@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SignUpActivity">
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Enter the following information:"
+            android:layout_marginLeft="20dp"/>
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="5dp"
+            android:hint="Name"
+            android:width="270dp"
+            android:cursorVisible="true"
+            android:id="@+id/name_sign"/>
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="10dp"
+            android:hint="Email"
+            android:width="270dp"
+            android:cursorVisible="true"
+            android:id="@+id/email_sign"/>
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="10dp"
+            android:hint="Username"
+            android:width="270dp"
+            android:cursorVisible="true"
+            android:id="@+id/username_sign"/>
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:width="270dp"
+            android:layout_marginTop="10dp"
+            android:hint="Password"
+            android:inputType="textPassword"
+            android:cursorVisible="true"
+            android:id="@+id/pwd_sign"/>
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:width="270dp"
+            android:layout_marginTop="10dp"
+            android:hint="Confirm Password"
+            android:inputType="textPassword"
+            android:cursorVisible="true"
+            android:id="@+id/pwd_sign2"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Select social media accounts you'd like to connect"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="15dp"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="30dp">
+
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:id="@+id/in_auth_button"
+                android:background="@drawable/linkedin_icon" />
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="40dp"
+                android:id="@+id/fb_auth_button"
+                android:background="@drawable/fb_icon"/>
+
+
+        </LinearLayout>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/signup_confirm"
+            android:layout_marginLeft="230dp"
+            android:layout_marginTop="10dp"
+            android:text="Sign Up"/>
+
+
+    </LinearLayout>
+
+</RelativeLayout>
