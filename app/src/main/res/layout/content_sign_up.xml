@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#2c3e50"
     tools:context=".SignUpActivity">
 
     <LinearLayout
@@ -16,13 +17,17 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Enter the following information:"
-            android:layout_marginLeft="20dp"/>
+            android:layout_marginLeft="20dp"
+            android:textSize="20dp"
+            android:textColor="#d3d3d3"/>
 
         <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="30dp"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="15dp"
+            android:textColor="#d3d3d3"
+            android:textColorHint="#708090"
             android:hint="Name"
             android:width="270dp"
             android:cursorVisible="true"
@@ -32,9 +37,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="30dp"
+            android:textColor="#d3d3d3"
             android:layout_marginTop="10dp"
             android:hint="Email"
             android:width="270dp"
+            android:textColorHint="#708090"
             android:cursorVisible="true"
             android:id="@+id/email_sign"/>
 
@@ -45,6 +52,8 @@
             android:layout_marginTop="10dp"
             android:hint="Username"
             android:width="270dp"
+            android:textColor="#d3d3d3"
+            android:textColorHint="#708090"
             android:cursorVisible="true"
             android:id="@+id/username_sign"/>
 
@@ -53,7 +62,9 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="30dp"
             android:width="270dp"
+            android:textColor="#d3d3d3"
             android:layout_marginTop="10dp"
+            android:textColorHint="#708090"
             android:hint="Password"
             android:inputType="textPassword"
             android:cursorVisible="true"
@@ -64,6 +75,8 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="30dp"
             android:width="270dp"
+            android:textColor="#d3d3d3"
+            android:textColorHint="#708090"
             android:layout_marginTop="10dp"
             android:hint="Confirm Password"
             android:inputType="textPassword"
@@ -75,7 +88,9 @@
             android:layout_height="wrap_content"
             android:text="Select social media accounts you'd like to connect"
             android:layout_marginLeft="20dp"
-            android:layout_marginTop="15dp"/>
+            android:textColor="#d3d3d3"
+            android:layout_marginTop="25dp"
+            android:textSize="14dp"/>
 
         <LinearLayout
             android:layout_width="wrap_content"
