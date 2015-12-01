@@ -21,8 +21,8 @@ import java.util.HashMap;
 
 public class MainActivity extends Activity {
 
-    static String currList = "Favorites";
-    HashMap<String, Integer> fullHash = new HashMap<String, Integer>();
+//    static String currList = "Favorites";
+    HashMap<String, Integer> allList = new HashMap<String, Integer>();
     ArrayList<String> discoverList;
     ArrayList<String> licnedList;
     ArrayList<Integer> alreadylincedList;
@@ -33,8 +33,6 @@ public class MainActivity extends Activity {
     final String backgroundColor = "#2c3e50";
     final String white = "#ffffff";
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,49 +41,77 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
 
         final ListView listView = (ListView) findViewById(R.id.listView);
-        final Button discoverButton = (Button) findViewById(R.id.allStations);
-        final Button lincButton = (Button) findViewById(R.id.favoritesButton);
-        final Button mapButton = (Button) findViewById(R.id.mapButton);
-        final TextView underlineFavorites = (TextView) findViewById(R.id.underlineFavorites);
-        final TextView underlineAll = (TextView) findViewById(R.id.underlineAll);
-        final TextView underlineMap = (TextView) findViewById(R.id.underlineMap);
+        final Button lincButton = (Button) findViewById(R.id.lincToButton);
+        final Button discoverButton = (Button) findViewById(R.id.findButton);
+        final TextView lincedLine = (TextView) findViewById(R.id.underlineLinced);
+        final TextView discoverLine = (TextView) findViewById(R.id.underlineDiscover);
+        ((TextView) findViewById(R.id.underlineMap)).setBackgroundColor(Color.parseColor(backgroundColor));
+        ((Button) findViewById(R.id.settingsButton)).setTextColor(Color.parseColor(white));
 
-        underlineFavorites.setBackgroundColor(Color.parseColor(highlightColor));
-        underlineAll.setBackgroundColor(Color.parseColor(backgroundColor));
-        underlineMap.setBackgroundColor(Color.parseColor(backgroundColor));
-        lincButton.setTextColor(Color.parseColor(highlightColor));
-        discoverButton.setTextColor(Color.parseColor(white));
-        mapButton.setTextColor(Color.parseColor(white));
+        pressButton(lincedLine, discoverLine, discoverButton, lincButton);
 
         addDiscoverList();
         addLincedHash();
         listView.setAdapter(setAllStations());
 
-        discoverButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                currList = "All";
-                listView.setAdapter(lincedPeople());
-                underlineAll.setBackgroundColor(Color.parseColor(highlightColor));
-                underlineFavorites.setBackgroundColor(Color.parseColor(backgroundColor));
-                discoverButton.setTextColor(Color.parseColor(highlightColor));
-                lincButton.setTextColor(Color.parseColor(white));
-            }
-        });
-
         lincButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                currList = "Favorites";
+//                currList = "All";
+                listView.setAdapter(lincedPeople());
+                pressButton(discoverLine, lincedLine, lincButton, discoverButton);
+
+            }
+        });
+
+        discoverButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                currList = "Favorites";
                 listView.setAdapter(setAllStations());
-                underlineFavorites.setBackgroundColor(Color.parseColor(highlightColor));
-                underlineAll.setBackgroundColor(Color.parseColor(backgroundColor));
-                lincButton.setTextColor(Color.parseColor(highlightColor));
-                discoverButton.setTextColor(Color.parseColor(white));
+                pressButton(lincedLine, discoverLine, discoverButton, lincButton);
+
             }
         });
 
 
+    }
+
+    public void pressButton(TextView a, TextView b, Button x, Button y) {
+        a.setBackgroundColor(Color.parseColor(highlightColor));
+        b.setBackgroundColor(Color.parseColor(backgroundColor));
+        x.setTextColor(Color.parseColor(highlightColor));
+        y.setTextColor(Color.parseColor(white));
+    }
+
+    public myList setAllStations(){
+        alreadylincedList = new ArrayList<Integer>(Collections.nCopies(45, R.drawable.blankcheck));
+        Collections.sort(licnedList);
+        int count = 0;
+        for (String station: licnedList) {
+            lincedHash.put(count, station);
+            count++;
+        }
+        for (String station: lincedHash.values()) {
+            alreadylincedList.set(allList.get(station), R.drawable.check);
+        }
+        return new myList(MainActivity.this, discoverList, alreadylincedList);
+    }
+
+    public ArrayAdapter<String> lincedPeople(){
+        alreadylincedList = new ArrayList<Integer>(licnedList.size());
+        Collections.sort(licnedList);
+        int count = 0;
+        while (count < licnedList.size()){
+            alreadylincedList.add(R.drawable.check);
+            count++;
+        }
+        count = 0;
+        for (String station: licnedList) {
+            lincedHash.put(count, station);
+            count++;
+        }
+        return new myList(MainActivity.this, licnedList, alreadylincedList);
     }
 
     public void addDiscoverList() {
@@ -120,7 +146,7 @@ public class MainActivity extends Activity {
         int count = 0;
         for (String station: discoverList) {
             discoverHash.put(count, station);
-            fullHash.put(station, count);
+            allList.put(station, count);
             count++;
         }
     }
@@ -144,45 +170,13 @@ public class MainActivity extends Activity {
         }
     }
 
-    public myList setAllStations(){
-        alreadylincedList = new ArrayList<Integer>(Collections.nCopies(45, R.drawable.blankcheck));
-        Collections.sort(licnedList);
-        int count = 0;
-        for (String station: licnedList) {
-            lincedHash.put(count, station);
-            count++;
-        }
-        for (String station: lincedHash.values()) {
-            alreadylincedList.set(fullHash.get(station), R.drawable.check);
-        }
 
-        myList adapter = new myList(MainActivity.this, discoverList, alreadylincedList);
-        return adapter;
-    }
 
-    public ArrayAdapter<String> lincedPeople(){
-        alreadylincedList = new ArrayList<Integer>(licnedList.size());
-        Collections.sort(licnedList);
-        int count = 0;
-        while (count < licnedList.size()){
-            alreadylincedList.add(R.drawable.check);
-            count++;
-        }
-        count = 0;
-        for (String station: licnedList) {
-            lincedHash.put(count, station);
-            count++;
-        }
-
-        myList adapter = new myList(MainActivity.this, licnedList, alreadylincedList);
-        return adapter;
-    }
-
-    public ArrayAdapter<String> clearStations(){
-        ArrayList<String> list =  new ArrayList<>(1);
-        ArrayAdapter<String> listAdapter = new ArrayAdapter<String>(this, R.layout.list_item, list);
-        return listAdapter;
-    }
+//    public ArrayAdapter<String> clearStations(){
+//        ArrayList<String> list =  new ArrayList<>(1);
+//        ArrayAdapter<String> listAdapter = new ArrayAdapter<String>(this, R.layout.list_item, list);
+//        return listAdapter;
+//    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
