@@ -17,10 +17,8 @@ public class myList extends ArrayAdapter<String> {
     private final ArrayList<Integer> checkmark;
 
 
-    public myList(Activity context,
-                  ArrayList<String> person, ArrayList<Integer> checkmark) {
+    public myList(Activity context, ArrayList<String> person, ArrayList<Integer> checkmark) {
         super(context, R.layout.list_item, person);
-
         this.context = context;
         this.person = person;
         this.checkmark = checkmark;

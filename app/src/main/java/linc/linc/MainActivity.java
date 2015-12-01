@@ -21,7 +21,6 @@ import java.util.HashMap;
 
 public class MainActivity extends Activity {
 
-//    static String currList = "Favorites";
     HashMap<String, Integer> allList = new HashMap<String, Integer>();
     ArrayList<String> discoverList;
     ArrayList<String> licnedList;
@@ -57,7 +56,6 @@ public class MainActivity extends Activity {
         lincButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                currList = "All";
                 listView.setAdapter(lincedPeople());
                 pressButton(discoverLine, lincedLine, lincButton, discoverButton);
 
@@ -67,7 +65,6 @@ public class MainActivity extends Activity {
         discoverButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                currList = "Favorites";
                 listView.setAdapter(setAllStations());
                 pressButton(lincedLine, discoverLine, discoverButton, lincButton);
 
@@ -142,11 +139,12 @@ public class MainActivity extends Activity {
         discoverList.add("Zaahir Rana");
         discoverList.add("Eliana Horn");
         discoverList.add("Tatton Bencivenni");
+
         Collections.sort(discoverList);
         int count = 0;
-        for (String station: discoverList) {
-            discoverHash.put(count, station);
-            allList.put(station, count);
+        for (String person : discoverList) {
+            discoverHash.put(count, person);
+            allList.put(person, count);
             count++;
         }
     }
@@ -162,21 +160,16 @@ public class MainActivity extends Activity {
         licnedList.add("Patrice Cabrera");
         licnedList.add("Jeanette Ardito");
         licnedList.add("Sarah Holme");
+
         Collections.sort(licnedList);
         int count = 0;
-        for (String station: licnedList) {
-            lincedHash.put(count, station);
+        for (String person : licnedList) {
+            lincedHash.put(count, person);
             count++;
         }
     }
 
 
-
-//    public ArrayAdapter<String> clearStations(){
-//        ArrayList<String> list =  new ArrayList<>(1);
-//        ArrayAdapter<String> listAdapter = new ArrayAdapter<String>(this, R.layout.list_item, list);
-//        return listAdapter;
-//    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
