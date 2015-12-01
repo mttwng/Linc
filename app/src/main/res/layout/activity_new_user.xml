@@ -10,19 +10,22 @@
     android:background="#2c3e50"
     tools:context=".NewUser">
 
-    <TextView android:text="Welcome to Linc!"
+    <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="30dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="20dp"
-        android:textColor="#d3d3d3"/>
+        android:layout_marginLeft="40dp"
+        android:src="@drawable/linc_logo"
+        android:scaleType="fitCenter"
+        android:adjustViewBounds="true"
+        android:maxWidth="250dp"
+        android:maxHeight="200dp"
+        />
 
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_marginTop="50dp">
+        android:layout_marginTop="150dp">
 
         <Button
             android:layout_width="wrap_content"
