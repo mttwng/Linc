@@ -1,5 +1,6 @@
 package linc.linc;
 
+import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -24,6 +25,8 @@ public class MainActivity extends Activity {
     HashMap<String, Integer> allList = new HashMap<String, Integer>();
     ArrayList<String> discoverList;
     ArrayList<String> licnedList;
+    ArrayList<String> settingsList;
+    ArrayList<String> toggleList;
     ArrayList<Integer> alreadylincedList;
     HashMap<Integer, String> discoverHash = new HashMap<Integer, String>();
     HashMap<Integer, String> lincedHash = new HashMap<Integer, String>();
@@ -40,24 +43,35 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
 
         final ListView listView = (ListView) findViewById(R.id.listView);
+        final ListView toggleView = (ListView) findViewById(R.id.toggleView);
         final Button lincButton = (Button) findViewById(R.id.lincToButton);
         final Button discoverButton = (Button) findViewById(R.id.findButton);
-        final TextView lincedLine = (TextView) findViewById(R.id.underlineLinced);
-        final TextView discoverLine = (TextView) findViewById(R.id.underlineDiscover);
-        ((TextView) findViewById(R.id.underlineMap)).setBackgroundColor(Color.parseColor(backgroundColor));
-        ((Button) findViewById(R.id.settingsButton)).setTextColor(Color.parseColor(white));
-
-        pressButton(lincedLine, discoverLine, discoverButton, lincButton);
+        final Button settingsButton = (Button) findViewById(R.id.settingsButton);
+        final TextView lineDiscover = (TextView) findViewById(R.id.discoverUnderline);
+        final TextView lineLinced = (TextView) findViewById(R.id.lincedUnderline);
+        final TextView lineSettings = (TextView) findViewById(R.id.underlineMap);
+        lineSettings.setBackgroundColor(Color.parseColor(backgroundColor));
+        settingsButton.setTextColor(Color.parseColor(white));
+        pressButton(lineDiscover, lineLinced, discoverButton, lincButton, settingsButton);
 
         addDiscoverList();
         addLincedHash();
-        listView.setAdapter(setAllStations());
+        addSettingsList();
+
+        toggleList = new ArrayList<>(1);
+        toggleList.add("Discoverable");
+
+        toggleView.setAdapter(toggleSet());
+        listView.setAdapter(discoverPeopleSet());
 
         lincButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                toggleView.setAdapter(null);
                 listView.setAdapter(lincedPeople());
-                pressButton(discoverLine, lincedLine, lincButton, discoverButton);
+                ViewGroup.MarginLayoutParams mlp = (ViewGroup.MarginLayoutParams) listView.getLayoutParams();
+                mlp.setMargins(12, 85, 12, 0);
+                pressButton(lineLinced, lineDiscover, lincButton, discoverButton, settingsButton);
 
             }
         });
@@ -65,8 +79,27 @@ public class MainActivity extends Activity {
         discoverButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                listView.setAdapter(setAllStations());
-                pressButton(lincedLine, discoverLine, discoverButton, lincButton);
+                toggleView.setAdapter(null);
+                listView.setAdapter(discoverPeopleSet());
+                ViewGroup.MarginLayoutParams mlp = (ViewGroup.MarginLayoutParams) listView.getLayoutParams();
+                mlp.setMargins(12, 85, 12, 0);
+                pressButton(lineDiscover, lineLinced, discoverButton, lincButton, settingsButton);
+
+            }
+        });
+
+        settingsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                toggleView.setAdapter(null);
+                listView.setAdapter(settingsList());
+                ViewGroup.MarginLayoutParams mlp = (ViewGroup.MarginLayoutParams) listView.getLayoutParams();
+                mlp.setMargins(12, 85, 12, 0);
+                lineDiscover.setBackgroundColor(Color.parseColor(backgroundColor));
+                lineLinced.setBackgroundColor(Color.parseColor(backgroundColor));
+                settingsButton.setTextColor(Color.parseColor(highlightColor));
+                lincButton.setTextColor(Color.parseColor(white));
+                discoverButton.setTextColor(Color.parseColor(white));
 
             }
         });
@@ -74,14 +107,16 @@ public class MainActivity extends Activity {
 
     }
 
-    public void pressButton(TextView a, TextView b, Button x, Button y) {
+    public void pressButton(TextView a, TextView b, Button x, Button y, Button z) {
         a.setBackgroundColor(Color.parseColor(highlightColor));
         b.setBackgroundColor(Color.parseColor(backgroundColor));
         x.setTextColor(Color.parseColor(highlightColor));
         y.setTextColor(Color.parseColor(white));
+        z.setTextColor(Color.parseColor(white));
+
     }
 
-    public myList setAllStations(){
+    public myList discoverPeopleSet(){
         alreadylincedList = new ArrayList<Integer>(Collections.nCopies(45, R.drawable.blankcheck));
         Collections.sort(licnedList);
         int count = 0;
@@ -111,8 +146,18 @@ public class MainActivity extends Activity {
         return new myList(MainActivity.this, licnedList, alreadylincedList);
     }
 
+    public myList settingsList() {
+        alreadylincedList = new ArrayList<Integer>(settingsList.size());
+        return new myList(MainActivity.this, settingsList, alreadylincedList);
+    }
+
+    public myList toggleSet() {
+        alreadylincedList = new ArrayList<Integer>(settingsList.size());
+        return new myList(MainActivity.this, toggleList, alreadylincedList);
+    }
+
     public void addDiscoverList() {
-        discoverList =  new ArrayList<>(45);
+        discoverList = new ArrayList<>(45);
         discoverList.add("Kecia Flores");
         discoverList.add("Charmain Foster");
         discoverList.add("Mariann Landey");
@@ -150,7 +195,7 @@ public class MainActivity extends Activity {
     }
 
     public void addLincedHash() {
-        licnedList =  new ArrayList<>(45);
+        licnedList = new ArrayList<>(45);
         licnedList.add("Gol Meisner");
         licnedList.add("Siward Fabre");
         licnedList.add("Mariann Landey");
@@ -167,6 +212,17 @@ public class MainActivity extends Activity {
             lincedHash.put(count, person);
             count++;
         }
+    }
+
+    public void addSettingsList() {
+        settingsList = new ArrayList<>(45);
+        settingsList.add("Linkedin");
+        settingsList.add("Facebook");
+        settingsList.add("Google");
+        settingsList.add("Phone");
+        settingsList.add("Email");
+        settingsList.add("Toggle");
+
     }
 
 

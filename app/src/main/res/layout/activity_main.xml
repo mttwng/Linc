@@ -16,7 +16,8 @@
         android:background="@android:color/transparent"
         android:gravity="bottom|center_horizontal|right"
         android:paddingBottom="5dp"
-        android:layout_height="30dp"/>
+        android:layout_height="30dp"
+        android:paddingRight="10dp" />
 
     <Button
         style="?android:attr/buttonStyleSmall"
@@ -56,10 +57,9 @@
         android:layout_height="2dp"
         android:layout_marginTop="29dp"
         android:width="100dp"
-        android:id="@+id/underlineLinced"
-        android:background="#F39C12"
-        android:layout_alignBottom="@+id/underlineDiscover"
-        android:layout_toStartOf="@+id/underlineDiscover"
+        android:id="@+id/discoverUnderline"
+        android:layout_alignBottom="@+id/lincedUnderline"
+        android:layout_toStartOf="@+id/lincedUnderline"
         android:layout_alignParentTop="true" />
 
     <TextView
@@ -67,7 +67,7 @@
         android:layout_height="2dp"
         android:layout_marginTop="29dp"
         android:width="100dp"
-        android:id="@+id/underlineDiscover"
+        android:id="@+id/lincedUnderline"
         android:layout_alignBottom="@+id/underlineMap"
         android:layout_toStartOf="@+id/underlineMap"
         android:layout_alignParentTop="true" />
@@ -84,20 +84,28 @@
     <ListView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:id="@+id/toggleView"
+        android:layout_alignParentEnd="true"
+        android:gravity="center_vertical"
+        android:layout_marginTop="33dp"
+        android:paddingRight="12dp"
+        android:paddingLeft="12dp"
+        tools:listitem="@android:layout/toggle_item"
+        android:background="#FF0c1e30"
+        android:textColor="#ffffff"
+        />
+
+    <ListView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
         android:id="@+id/listView"
         android:layout_alignParentEnd="true"
         android:gravity="center_vertical"
-        android:paddingTop="41dp"
+        android:layout_marginTop="85dp"
         android:layout_marginRight="12dp"
         android:layout_marginLeft="12dp"
-        tools:listitem="@android:layout/simple_list_item_1" />
+        android:layout_alignParentTop="true"
+        tools:listitem="@android:layout/list_item" />
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/bartMap"
-        android:visibility="invisible"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>
