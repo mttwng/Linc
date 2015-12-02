@@ -63,14 +63,16 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private boolean passwordMatch(String given_password) {
-        if (given_password.equals("cs160linc") || (given_password.equals("group23linc"))) {
+        if (given_password.equals("abc123") || (given_password.equals("password"))
+                || (given_password.equals("123456"))) {
             return true;
         }
         return true;
     }
 
     private boolean usersMatch(String given_user) {
-        if (given_user.equals("namrata.das") || given_user.equals("john.doe")) {
+        if (given_user.equals("namrata.das") || given_user.equals("john.doe")
+                || given_user.equals("sally.ride")) {
             return true;
         }
         return false;
